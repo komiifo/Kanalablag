@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blague index{% endblock %}
+
+{% block body %}
+    <h1>Blague index</h1>
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Blague</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blague in blagues %}
+            <tr>
+                <td>{{ blague.id }}</td>
+                <td>{{ blague.blague }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_blague_show', {'id': blague.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_blague_edit', {'id': blague.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-dark" href="{{ path('app_blague_new') }}">Create new</a>
+{% endblock %}
